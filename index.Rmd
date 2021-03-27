@@ -1,0 +1,99 @@
+---
+title: "Escuelas de Baile en La Habana Cuba"
+author: "Maria Freydlin"
+date: "3/10/2021"
+output: ioslides_presentation
+always_allow_html: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+
+
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+library(leaflet)
+
+name <- c('Salsa Express', 'Marisuri', 'Mi Isla Dancing', 'Salsabor a Cuba',
+              'Raiz Cuba', 'Salsa en Casa', 'Latinsalseando Havana', 'Baila Habana', 
+              'Salsa Estilo Cuba', 'Salsa con Clase', 'A lo Cubano', 'Salsafari',
+              'Salsa en casa, Cuban Salsa school', 'Salsa en Clave', 'Salsandunga',
+              'Casa Son Malecón',
+              'HabanaKiz', 'SalsAmiga All Star', 'Salsa Mejor', 'Casa MilyDance',
+              'A lo Cubano Lisandra', 'Casa de Tango Y Salsa', 'CH Salsa Club',
+              'Salsandunga - Dance School', 'Salsa Express', 'El Rincón de la Salsa Cubana', 
+              'Casa del Tango Edmundo Daubar', 'El Purito', 'Baila Habana',
+              'Salsa En Clave', 'Cuba y Su Rica Salsa', 'Salsa Dance Cuba',
+              'Havana Music School', 'Cuban National Ballet School', 'Habana Compas Dance',
+              'Casa de la Música de Miramar', 'Lizt Alfonso Dance Cuba' , 'Acosta Danza')
+
+lat = c(23.106530,23.140850,23.136390,23.140850,23.136710,23.0936605,23.1369447,23.13931,
+        23.13485336303711,23.13302,23.134543,23.1260776,23.0356198,23.1333209,23.1394352,
+        23.1397538,23.1337847,23.0764705,23.1370294,23.1375968,23.099860,23.138400,
+        23.136710,23.145190,23.066750,23.1385,23.1386,23.1434,23.1382,23.1333,23.1375,
+        23.1444,23.1670,23.1454,23.0933,23.1281,23.1348,23.1430)
+
+lng = c(-82.430040,-82.359910,-82.350480,-82.359910,-82.353760,-82.4218494,-82.3669018,
+        -82.3531761,-82.3528823852539,-82.38304,-82.3864117,-82.3986047,-82.4704026,
+        -82.3479286,-82.3548572,-82.3552431,-82.349674,-82.469294,-82.3649418,-82.3577928,
+        -82.336090,-82.358360,-82.362310,-82.309200,-82.393580,-82.3729,-82.3574,-82.3897,
+        -82.3690,-82.3479,-82.3574,-82.3921,-82.2685,-82.3867,-82.4160,-82.2932,-82.3532 ,
+        -82.3878)
+
+escuelas.df <- data.frame(name, lat, lng)
+
+
+escuelas.df %>% leaflet() %>% addTiles() %>% addMarkers(popup = name,
+                                                        clusterOptions = markerClusterOptions())
+
+```
+
+## Escuelas de Salsa, Baile y Música en Habana, Cuba 
+3/10/2021
+
+```{r, echo=FALSE, message=FALSE,warning=FALSE}
+library(leaflet)
+
+name <- c('Salsa Express', 'Marisuri', 'Mi Isla Dancing', 'Salsabor a Cuba',
+              'Raiz Cuba', 'Salsa en Casa', 'Latinsalseando Havana', 'Baila Habana', 
+              'Salsa Estilo Cuba', 'Salsa con Clase', 'A lo Cubano', 'Salsafari',
+              'Salsa en casa, Cuban Salsa school', 'Salsa en Clave', 'Salsandunga',
+              'Casa Son Malecón',
+              'HabanaKiz', 'SalsAmiga All Star', 'Salsa Mejor', 'Casa MilyDance',
+              'A lo Cubano Lisandra', 'Casa de Tango Y Salsa', 'CH Salsa Club',
+              'Salsandunga - Dance School', 'Salsa Express', 'El Rincón de la Salsa Cubana', 
+              'Casa del Tango Edmundo Daubar', 'El Purito', 'Baila Habana',
+              'Salsa En Clave', 'Cuba y Su Rica Salsa', 'Salsa Dance Cuba',
+              'Havana Music School', 'Cuban National Ballet School', 'Habana Compas Dance',
+              'Casa de la Música de Miramar', 'Lizt Alfonso Dance Cuba' , 'Acosta Danza')
+
+lat = c(23.106530,23.140850,23.136390,23.140850,23.136710,23.0936605,23.1369447,23.13931,
+        23.13485336303711,23.13302,23.134543,23.1260776,23.0356198,23.1333209,23.1394352,
+        23.1397538,23.1337847,23.0764705,23.1370294,23.1375968,23.099860,23.138400,
+        23.136710,23.145190,23.066750,23.1385,23.1386,23.1434,23.1382,23.1333,23.1375,
+        23.1444,23.1670,23.1454,23.0933,23.1281,23.1348,23.1430)
+
+lng = c(-82.430040,-82.359910,-82.350480,-82.359910,-82.353760,-82.4218494,-82.3669018,
+        -82.3531761,-82.3528823852539,-82.38304,-82.3864117,-82.3986047,-82.4704026,
+        -82.3479286,-82.3548572,-82.3552431,-82.349674,-82.469294,-82.3649418,-82.3577928,
+        -82.336090,-82.358360,-82.362310,-82.309200,-82.393580,-82.3729,-82.3574,-82.3897,
+        -82.3690,-82.3479,-82.3574,-82.3921,-82.2685,-82.3867,-82.4160,-82.2932,-82.3532 ,
+        -82.3878)
+
+escuelas.df <- data.frame(name, lat, lng)
+
+
+escuelas.df %>% leaflet() %>% addTiles() %>% addMarkers(popup = name,
+                                                        clusterOptions = markerClusterOptions())
+
+```
+
+
+
+
+
+
