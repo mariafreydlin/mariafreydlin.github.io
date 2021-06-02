@@ -1,65 +1,45 @@
 ---
-title: "Avocados"
+title: "Vaccines Project"
 author: "Maria Freydlin"
-date: "4/16/2021"
+date: "5/17/2021"
 output: slidy_presentation
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = T)
 ```
 
-```{r, eval=FALSE, message=FALSE, warning=FALSE}
-df <- read.csv("List_of_countries_by_avocado_production.csv")
+## Introduction
 
-library(plotly)
+This presentation demonstrates the data manipulation used in my Vaccine Count shiny app. The data set was downloaded from Kaggle and it contains daily Covid-19 vaccinations for each country. You can view the app here [Vaccines](https://mariafreydlin.shinyapps.io/vaccines/)
+
+## Dataset Preview
+
+Here I load all the libraries and take a preview of the dataset
+
+```{r df, message=F, warning=F}
+
 library(dplyr)
 library(ggplot2)
+library(readr)
+df <- read_csv("country_vaccinations.csv.zip")
+df
+```
+## Filter and Group
+Filter and Group the data set by date and summarize by total vaccinations per country. In the shiny app the user will choose which country to filter by
+```{r filter, message=F, warning=F}
+df_total <- df %>% 
+        filter(country=="Belarus") %>%
+        group_by(date) %>%
+        summarise(total = sum(total_vaccinations, na.rm = T))
+df_total
+```
 
-df8 <- df[1:8,]
+## Plot the vaccine timeline for the selected country
 
-names(df8)[2:5]=c('Country',  '2018', '2017','2016')
-
-
-
-library(tidyr)
-avocados = pivot_longer(df8, cols = 3:5, names_to = 'year', values_to = 'volume')
-
-g <- ggplot(avocados, aes(year, volume)) +
-        geom_bar(stat='identity', position='dodge', aes(fill=Country))+
-        scale_fill_discrete(name = "Country")+
-        ggtitle("Avocado Production")
-
-
-(gg <- ggplotly(g))
+```{r plot}
+g <- ggplot(df_total, aes(date, total)) + geom_line() +theme_bw()
+g
 
 ```
 
-## Avocado Production graph created on 4/16/2021
-
-```{r, echo=FALSE, message=FALSE,warning=FALSE}
-df <- read.csv("List_of_countries_by_avocado_production.csv")
-
-library(plotly)
-library(dplyr)
-library(ggplot2)
-
-df8 <- df[1:8,]
-
-names(df8)[2:5]=c('Country',  '2018', '2017','2016')
-
-
-
-library(tidyr)
-avocados = pivot_longer(df8, cols = 3:5, names_to = 'year', values_to = 'volume')
-
-g <- ggplot(avocados, aes(year, volume)) +
-        geom_bar(stat='identity', position='dodge', aes(fill=Country))+
-        scale_fill_discrete(name = "Country")+
-        ggtitle("Avocado Production")
-
-
-(gg <- ggplotly(g))
-
-
-```
